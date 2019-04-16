@@ -53,4 +53,10 @@ public class StackTraceElementConverterTest extends AbstractAcceptanceTest {
         assertBothWays(trace, expectedXml);
     }
 
+    public void testSupportsComplexFileNames() {
+        final StackTraceElement trace = factory.element("com.blah.SomeClass", "someMethod", "jar:file:/path/file.jar/package/SomeClass.groovy", 25);
+        final String expectedXml = "<trace>com.blah.SomeClass.someMethod(jar:file:/path/file.jar/package/SomeClass.groovy:25)</trace>";
+        assertBothWays(trace, expectedXml);
+    }
+
 }
